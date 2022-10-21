@@ -12,6 +12,9 @@ function convertArrayIntoList(array) {
 }
 
 var oddEvenList = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
   let odd = head;
   let even = head.next;
   while (even && even.next) {
