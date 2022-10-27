@@ -22,6 +22,22 @@ let binaryTree = function (values) {
     i++;
   }
   return root;
-}
 
-console.log(binaryTree([ 1,2,2,3,3,null,null,4,4]));
+}
+var hasPathSum = function (root, targetSum ) {
+
+  if (root === null) {
+    return false;
+  }
+  if (root.left === null && root.right === null) {
+    return targetSum === root.value;
+  }
+  return hasPathSum(root.left, targetSum - root.value) || hasPathSum(root.right, targetSum - root.value);
+
+
+
+
+};
+
+console.log(hasPathSum(binaryTree([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]), 22)); // true
+
