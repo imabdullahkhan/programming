@@ -5,25 +5,22 @@ var maxAreaOfIsland = function (grid) {
     let islandFound = (i, j) => {
 
         if (i >= m || i <= -1) {
-            return
+            return 0;
         }
         if (j >= n || j <= -1) {
-            return
+            return 0;
         }
         if (grid[i][j] == 2 || grid[i][j] == 3) {
-            return;
+            return 0;
         }
         if (grid[i][j] == 1) {
             grid[i][j] = 3;
         }
         if (grid[i][j] == 0) {
-            return;
+            return 0;
         }
+        return 1 + islandFound(i - 1, j) + islandFound(i + 1, j) + islandFound(i, j + 1) + islandFound(i, j - 1)
 
-        islandFound(i - 1, j);
-        islandFound(i + 1, j);
-        islandFound(i, j + 1);
-        islandFound(i, j - 1);
     }
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
@@ -35,12 +32,14 @@ var maxAreaOfIsland = function (grid) {
             }
             if (grid[i][j] == 1) {
 
-                islandFound(i, j);
-                count = count + 1;
+                let area = islandFound(i, j);
+                if (count < area) {
+                    count = area;
+
+                }
             }
         }
     }
-
     return count;
 
 };
