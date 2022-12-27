@@ -15,10 +15,7 @@ var countAndSay = function (n) {
 
       }
     }
-
     newString = `${newString}${count}${compareString}`
-
-
     outputString = newString;
   }
   return outputString
