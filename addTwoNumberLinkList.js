@@ -4,7 +4,7 @@ function ListNode(val, next) {
 }
 
 
- function convertArrayIntoList(array) {
+function convertArrayIntoList(array) {
   let list = null;
   for (let i = array.length - 1; i >= 0; i--) {
     list = new ListNode(array[i], list);
@@ -34,15 +34,28 @@ var addTwoNumbers = function (l1, l2) {
     v2 = v2 + (stackl2[ii] * Math.pow(10, ii));
 
   }
-  let sum = (v1 + v2).toString().split("").reverse().join("");
-  let Head = new ListNode(Number(sum[0]));
-  let nextNode = Head;
-  for (let k = 1; k < sum.length; k++) {
-    let newNode = new ListNode(Number(sum[k]))
-    nextNode.next = newNode;
-    nextNode = nextNode.next;
+  let sum = v1 + v2;
+  //insert into list reverse order last to first
+  let Head = null;
+  let list = Head;
+  if (sum == 0) {
+    return new ListNode(0);
   }
-  return Head
+  while (sum > 0) {
+    let mod = sum % 10;
+    let newNode = new ListNode(mod);
+    if (Head == null) {
+      Head = newNode;
+      list = Head;
+      sum = Math.floor(sum / 10);
+    } else {
+      list.next = newNode;
+      list = list.next;
+      sum = Math.floor(sum / 10);
+    }
+
+  }
+  return Head;
 };
 
-console.log(addTwoNumbers(convertArrayIntoList([2, 4, 3]), convertArrayIntoList([5, 6, 4])));
+console.log(addTwoNumbers(convertArrayIntoList([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]), convertArrayIntoList([5, 6, 4])));
